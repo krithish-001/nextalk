@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    background-color: #0a0a0f;
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: #2e2e42; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #4ade80; }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass {
+    @apply bg-surface-100/80 backdrop-blur-xl border border-white/5;
+  }
+
+  /* Input base style */
+  .input-base {
+    @apply w-full bg-surface-200 border border-white/10 rounded-xl px-4 py-3
+           text-white placeholder-white/30 text-sm
+           focus:outline-none focus:border-primary-500/60 focus:ring-1 focus:ring-primary-500/30
+           transition-all duration-200;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply flex items-center justify-center gap-2
+           bg-primary-500 hover:bg-primary-400
+           text-white font-semibold text-sm
+           px-5 py-2.5 rounded-xl
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply flex items-center justify-center gap-2
+           bg-white/5 hover:bg-white/10
+           text-white/70 hover:text-white
+           px-4 py-2 rounded-xl
+           transition-all duration-200;
+  }
+
+  /* Message bubbles */
+  .bubble-sent {
+    @apply bg-primary-600 text-white rounded-2xl rounded-br-sm px-4 py-2.5
+           max-w-[75%] ml-auto shadow-lg shadow-primary-900/20;
+  }
+
+  .bubble-received {
+    @apply bg-surface-300 text-white rounded-2xl rounded-bl-sm px-4 py-2.5
+           max-w-[75%] shadow-lg;
+  }
+
+  /* Online indicator */
+  .online-dot {
+    @apply w-2.5 h-2.5 bg-primary-400 rounded-full ring-2 ring-surface-100;
+  }
+
+  /* Sidebar item */
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer
+           hover:bg-white/5 transition-all duration-150;
+  }
+  .sidebar-item.active {
+    @apply bg-primary-500/10 border border-primary-500/20;
+  }
+}
+
+/* Typing dots animation */
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay:     0s; }
+
+/* Message appear animation */
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+.msg-appear {
+  animation: msgIn 0.2s ease-out forwards;
+}

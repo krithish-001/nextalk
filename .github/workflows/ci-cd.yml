@@ -44,4 +44,4 @@ jobs:
         run: npm run build
         env:
           REACT_APP_API_URL: /api
-          REACT_APP_SOCKET_URL: http://localhost
+          REACT_APP_SOCKET_URL: ""
